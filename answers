@@ -1,0 +1,121 @@
+PART1
+
+1. Sinatra is a Ruby web framework. It compiles/inteprets Ruby so it can be used on websites. Compared to Rails, it is lightweight and stripped down. You need to manually do things to get a website up and running.
+
+2. A Gemfile is a list of Ruby Gems that you are application requires to function as expected. Sinatra is a gem. Gems are add-ons/plug-ins for Ruby to give you additional functionality that was written by someone else. Instead of writing it all yourself. When you start your Ruby server, it will check to make sure it has all the required gems. 
+
+[FINISH with Step by Step]
+
+3. ORM (can't remember what the abbreviation stands for - object record manager?). Either way, I know what it does. A ORM allows your application and database to speak to each other. You could write this yourself in Ruby, but ORMs are complicated. It allows you to access database tables quickly and efficiently so you can interace with your database via your site. 
+
+4. Public folder contains all of assets, including images, css, js, etc. It is called public because everything contained can be seen/read by others via the browser.
+
+5. It is a particular type of API. Not sure much else.
+
+6. [FINISH w/ Step by Step]
+
+PART2
+
+1. OK
+2. CREATE TABLE Wizards
+(Name varchar(255),Age int)
+3. 0; SELECT COUNT(*) FROM table Wizards
+4.INSERT INTO Wizards (Name, Age)
+VALUES (Gandolf, 299)
+5. 1; SELECT COUNT(*) FROM table Wizards
+6. INSERT INTO Wizards (Name, Age)
+VALUES (CapitalErr, 2)
+7.UPDATE Wizards
+SET Age="2"
+WHERE Age="21" 
+8.UPDATE Wizards
+SET Age="40"
+9. DELETE FROM Wizards
+WHERE Name="CapitalErr";
+10. DROP TABLE Wizards;
+11. 
+
+First schema...
+
+CREATE Table Wizards
+(Name varchar(255), Age int, Power_1 varchar(255), Power_2 varchar(255));
+Gandolf, 22, BlueMagic, RedMagic
+Egor, 99, FacePaint, Lightning
+
+CREATE Table Superpowers
+(Name varchar(255), Damage_Amount int, Wizard varchar(255));
+BlueMagic, 99, Gandolf
+RedMagic, 102, Gandolf
+Lightning, 10000, Egor
+
+First off, this schema depends on name which we could validate as unique, but it probably be best to use a Unique ID (Primary Key?) to link the two tables. There is performance implications because Varchar is heavier than an Integer, right? As well, there is duplication since we have to repeat the name, which is bad. Then we would write a simple join to say get say the Age of the Wizard with BlueMagic power. 
+
+Second schema...
+
+CREATE Table Wizards
+(Wizard_Id int, Name varchar(255), Age int, Power_1 varchar(255), Power_2 varchar(255));
+1, Gandolf, 22, BlueMagic, RedMagic
+2, Egor, 99, FacePaint, Lightning
+
+CREATE Table Superpowers
+(Superpower_Id int, Name varchar(255), Damage_Amount int);
+1, BlueMagic, 99
+2, RedMagic, 102
+3, Lightning, 10000
+
+CREATE Table Wizard_Superpowers
+(Superpower_Id int, Wizard_Id int)
+1, 1
+1, 2
+2, 3
+
+In this case, we would use a joined table to bring the wizards and superpowers together. Less duplication here. I am not sure it this quesiton is about joins or not or validating uniques. 
+
+
+12. 
+SELECT name FROM Wizards
+WHERE Power_1 LIKE '%I%'
+
+13. I don't know.
+
+14. I don't know.
+
+15.
+
+INSERT INTO Wizards (Name, Age, Power_1, Power_2)
+VALUES ("Loser", 99,'nil,'nil');
+
+16. 
+SELECT name FROM Wizards
+WHERE Power_1='' AND Power_2=''
+
+17. 
+
+CREATE Table Wizards
+(Wizard_Id int, Name varchar(255), Age int, Power_1 varchar(255), Power_2 varchar(255));
+1, Gandolf, 22, BlueMagic, RedMagic
+2, Egor, 99, FacePaint, BlueMagic
+
+CREATE Table Superpowers
+(Superpower_Id int, Name varchar(255), Damage_Amount int);
+1, BlueMagic, 99
+2, RedMagic, 102
+3, Lightning, 10000
+
+CREATE Table Wizard_Superpowers
+(Superpower_Id int, Wizard_Id int)
+1, 1
+1, 2
+2, 3
+2, 1
+
+18. 
+SELECT Wizard FROM Superpowers
+WHERE Damage_Amount>5 AND Damage_Amount>5
+
+19. An inner join returns the overlap betwen Table A and Table B. An outer join returns everything from Table A and Table B. 
+
+20. I think that is an inner join. 
+
+21. 
+
